@@ -7,11 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- KaTeX para renderizado matemático de alta calidad -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
   <style>
     :root {
@@ -151,15 +146,15 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      padding: 1rem 1.25rem;
+      padding: 1.15rem 1.25rem;
       margin-bottom: 1rem;
     }
 
     .sub-item-title {
       font-weight: 700;
       color: #1e293b;
-      margin-bottom: 0.35rem;
-      font-size: 1rem;
+      margin-bottom: 0.45rem;
+      font-size: 1.05rem;
     }
 
     .meta-tag {
@@ -167,7 +162,7 @@
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 0.15rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 4px;
       margin-right: 0.4rem;
     }
@@ -175,21 +170,24 @@
     .tag-prop { background: #e0f2fe; color: #0369a1; }
     .tag-func { background: #fef3c7; color: #b45309; }
     .tag-tauto { background: #dcfce7; color: #15803d; }
-    .tag-contin { background: #fef3c7; color: #b45309; }
+    .tag-contin { background: #fee2e2; color: #991b1b; }
 
     .formula {
       font-family: 'Fira Code', monospace;
       background: #e2e8f0;
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.9em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-size: 0.95em;
+      font-weight: 600;
       color: #0f172a;
+      border: 1px solid #cbd5e1;
+      display: inline-block;
     }
 
     /* Tablas */
     .table-wrapper {
       overflow-x: auto;
-      margin: 0.75rem 0 1rem 0;
+      margin: 0.85rem 0 1rem 0;
       border: 1px solid var(--border);
       border-radius: 8px;
     }
@@ -205,7 +203,7 @@
       background: #f8fafc;
       color: #334155;
       font-weight: 600;
-      padding: 0.6rem;
+      padding: 0.65rem;
       border-bottom: 2px solid var(--border);
     }
 
@@ -232,11 +230,14 @@
       border-radius: 0 8px 8px 0;
       margin: 1rem 0;
       font-size: 0.93rem;
+      line-height: 1.65;
     }
 
     .callout.detective {
       background: #fefce8;
       border-left-color: #ca8a04;
+      border: 1px solid #fef08a;
+      border-left-width: 4px;
     }
 
     .callout.contradiction {
@@ -254,7 +255,7 @@
       padding-top: 1.5rem;
       border-top: 1px solid var(--border);
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -295,37 +296,37 @@
         <span class="points-badge">2 puntos</span>
       </div>
       <p style="font-size:0.9rem; color:#64748b; margin-bottom:1rem;">
-        <strong>Criterio:</strong> Sujeto concreto ("Pedro", "El perro") $\implies$ Proposición (Constante). Incógnita abierta ("x", "Ellos") $\implies$ Función Proposicional (Variable).
+        <strong>Criterio:</strong> Sujeto concreto ("Pedro", "El perro") ⇒ <strong>Proposición</strong> (Constante). Incógnita abierta ("x", "Ellos") ⇒ <strong>Función Proposicional</strong> (Variable).
       </p>
 
       <div class="sub-item">
         <div class="sub-item-title">a) "Pedro usa bastón."</div>
         <p><span class="meta-tag tag-prop">Proposición simple</span> Tiene sujeto concreto y valor de verdad determinado.</p>
-        <p><strong>Simbolización:</strong> <span class="formula">B(p)</span> — Predicado $B$: <em>"usa bastón"</em>, $p$: <strong>constante individual</strong> (Pedro).</p>
+        <p style="margin-top:0.4rem;"><strong>Simbolización:</strong> <span class="formula">B(p)</span> — Predicado <em>B</em>: <em>"usa bastón"</em>, <em>p</em>: <strong>constante individual</strong> (Pedro).</p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">b) "x + 5 es un número impar."</div>
-        <p><span class="meta-tag tag-func">Función proposicional</span> Su valor de verdad depende del número que tome $x$.</p>
-        <p><strong>Simbolización:</strong> <span class="formula">I(x)</span> — Predicado $I$: <em>"es impar"</em>, $x$: <strong>variable individual</strong>.</p>
+        <p><span class="meta-tag tag-func">Función proposicional</span> Su valor de verdad depende del número específico que tome <em>x</em>.</p>
+        <p style="margin-top:0.4rem;"><strong>Simbolización:</strong> <span class="formula">I(x)</span> — Predicado <em>I</em>: <em>"es impar"</em>, <em>x</em>: <strong>variable individual</strong>.</p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">c) "El perro tiene frío."</div>
         <p><span class="meta-tag tag-prop">Proposición simple</span> Oración declarativa sobre un sujeto determinado.</p>
-        <p><strong>Simbolización:</strong> <span class="formula">F(c)</span> — Predicado $F$: <em>"tiene frío"</em>, $c$: <strong>constante individual</strong> (el perro).</p>
+        <p style="margin-top:0.4rem;"><strong>Simbolización:</strong> <span class="formula">F(c)</span> — Predicado <em>F</em>: <em>"tiene frío"</em>, <em>c</em>: <strong>constante individual</strong> (el perro).</p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">d) "Si Juan y Laura van al circo, nos dejarán su auto."</div>
-        <p><span class="meta-tag tag-prop">Proposición compuesta</span> Unión de proposiciones simples con conectivas $\land$ y $\rightarrow$.</p>
-        <p><strong>Simbolización:</strong> <span class="formula">(j \land l) \rightarrow a</span> — $j$: Juan va, $l$: Laura va, $a$: dejan el auto.</p>
+        <p><span class="meta-tag tag-prop">Proposición compuesta</span> Unión de proposiciones simples mediante las conectivas ∧ (conjunción) y → (condicional).</p>
+        <p style="margin-top:0.4rem;"><strong>Simbolización:</strong> <span class="formula">(j ∧ l) → a</span> — <em>j</em>: Juan va, <em>l</em>: Laura va, <em>a</em>: dejan el auto.</p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">e) "Ellos son buenos amigos."</div>
-        <p><span class="meta-tag tag-func">Función proposicional</span> El pronombre "Ellos" opera como una variable libre sin referente concreto.</p>
-        <p><strong>Simbolización:</strong> <span class="formula">A(x)</span> — Predicado $A$: <em>"son buenos amigos"</em>, $x$: <strong>variable individual</strong>.</p>
+        <p><span class="meta-tag tag-func">Función proposicional</span> El pronombre "Ellos" opera como una variable libre sin referente concreto establecido.</p>
+        <p style="margin-top:0.4rem;"><strong>Simbolización:</strong> <span class="formula">A(x)</span> — Predicado <em>A</em>: <em>"son buenos amigos"</em>, <em>x</em>: <strong>variable individual</strong>.</p>
       </div>
     </section>
 
@@ -361,7 +362,7 @@
             </tbody>
           </table>
         </div>
-        <p style="font-size:0.88rem;"><strong>Conclusión:</strong> Al tomar valor $V$ en todas sus filas ($F \rightarrow F = V$ en la fila 4), es una <strong>TAUTOLOGÍA</strong>.</p>
+        <p style="font-size:0.9rem;"><strong>Conclusión:</strong> Al tomar valor <strong>V</strong> en todas sus filas (notar en fila 4: <em>F → F = V</em>), la proposición es una <strong>TAUTOLOGÍA</strong>.</p>
       </div>
 
       <!-- 2.b -->
@@ -388,7 +389,7 @@
             </tbody>
           </table>
         </div>
-        <p style="font-size:0.88rem;"><strong>Conclusión:</strong> Falla en la fila $p=F, q=V$ ($V \rightarrow F = F$). Al mezclar valores $V$ y $F$, es una <strong>CONTINGENCIA</strong> (Falacia de Negación del Antecedente).</p>
+        <p style="font-size:0.9rem;"><strong>Conclusión:</strong> Falla en la fila <em>p = F, q = V</em> (donde <em>V → F = F</em>). Al mezclar valores <strong>V</strong> y <strong>F</strong>, es una <strong>CONTINGENCIA</strong> (conocida como la falacia de negación del antecedente).</p>
       </div>
     </section>
 
@@ -400,29 +401,35 @@
         <div class="exercise-title">Ejercicio 3: Simbolización en Lógica de Predicados</div>
         <span class="points-badge">3 puntos</span>
       </div>
-      <p style="font-size:0.9rem; color:#64748b; margin-bottom:1rem;">
-        <strong>Regla de oro:</strong> $\forall$ va con condicional ($\rightarrow$) y $\exists$ va con conjunción ($\land$).
+      <p style="font-size:0.9rem; color:#475569; margin-bottom:1.1rem;">
+        <strong>Regla de oro:</strong> El cuantificador universal <strong>∀</strong> ("para todo") va siempre asociado al condicional (<strong>→</strong>), mientras que el existencial <strong>∃</strong> ("existe algún") va siempre con conjunción (<strong>∧</strong>).
       </p>
 
       <div class="sub-item">
         <div class="sub-item-title">i. "Todas las personas pueden hacer eso."</div>
-        <p>Dominio: Todas las entidades | $P(x)$: <em>"x es persona"</em> | $H(x)$: <em>"x puede hacer eso"</em></p>
-        <p>• <strong>Forma 1 (Universal):</strong> <span class="formula">\forall x \, (P(x) \rightarrow H(x))</span></p>
-        <p>• <strong>Forma 2 (Negación existencial):</strong> <span class="formula">\neg \exists x \, (P(x) \land \neg H(x))</span> <em>("No existe persona que no pueda hacerlo")</em></p>
+        <p style="color:#64748b; font-size:0.88rem; margin-bottom:0.5rem;">
+          Dominio: Todas las entidades | <em>P(x)</em>: <em>"x es persona"</em> | <em>H(x)</em>: <em>"x puede hacer eso"</em>
+        </p>
+        <p style="margin-bottom:0.35rem;">• <strong>Forma 1 (Universal):</strong> <span class="formula">∀x (P(x) → H(x))</span></p>
+        <p>• <strong>Forma 2 (Negación existencial):</strong> <span class="formula">¬∃x (P(x) ∧ ¬H(x))</span> <em>("No existe persona que no pueda hacerlo")</em></p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">ii. "No todos los perros ladran."</div>
-        <p>Dominio: Los animales | $P(x)$: <em>"x es perro"</em> | $L(x)$: <em>"x ladra"</em></p>
-        <p>• <strong>Forma 1 (Negación universal):</strong> <span class="formula">\neg \forall x \, (P(x) \rightarrow L(x))</span></p>
-        <p>• <strong>Forma 2 (Existencial equivalente):</strong> <span class="formula">\exists x \, (P(x) \land \neg L(x))</span> <em>("Existe al menos un perro que no ladra")</em></p>
+        <p style="color:#64748b; font-size:0.88rem; margin-bottom:0.5rem;">
+          Dominio: Los animales | <em>P(x)</em>: <em>"x es perro"</em> | <em>L(x)</em>: <em>"x ladra"</em>
+        </p>
+        <p style="margin-bottom:0.35rem;">• <strong>Forma 1 (Negación universal):</strong> <span class="formula">¬∀x (P(x) → L(x))</span></p>
+        <p>• <strong>Forma 2 (Existencial equivalente):</strong> <span class="formula">∃x (P(x) ∧ ¬L(x))</span> <em>("Existe al menos un perro que no ladra")</em></p>
       </div>
 
       <div class="sub-item">
         <div class="sub-item-title">iii. "Hay servidores que no están conectados a Internet."</div>
-        <p>Dominio: Dispositivos informáticos | $S(x)$: <em>"x es servidor"</em> | $C(x)$: <em>"x está conectado"</em></p>
-        <p>• <strong>Forma 1 (Existencial directa):</strong> <span class="formula">\exists x \, (S(x) \land \neg C(x))</span></p>
-        <p>• <strong>Forma 2 (Negación de universal):</strong> <span class="formula">\neg \forall x \, (S(x) \rightarrow C(x))</span> <em>("No todos los servidores están conectados")</em></p>
+        <p style="color:#64748b; font-size:0.88rem; margin-bottom:0.5rem;">
+          Dominio: Dispositivos informáticos | <em>S(x)</em>: <em>"x es servidor"</em> | <em>C(x)</em>: <em>"x está conectado"</em>
+        </p>
+        <p style="margin-bottom:0.35rem;">• <strong>Forma 1 (Existencial directa):</strong> <span class="formula">∃x (S(x) ∧ ¬C(x))</span></p>
+        <p>• <strong>Forma 2 (Negación de universal):</strong> <span class="formula">¬∀x (S(x) → C(x))</span> <em>("No todos los servidores están conectados")</em></p>
       </div>
     </section>
 
@@ -439,17 +446,17 @@
       <div class="sub-item">
         <div class="sub-item-title">4.a) Deducción Natural con Predicados (C++)</div>
         <p style="margin-bottom:0.5rem;"><em>"Todos los lenguajes compilados son de alto nivel. C++ es compilado. Por lo tanto, C++ es de alto nivel."</em></p>
-        <p style="font-size:0.88rem; color:#475569; margin-bottom:0.5rem;">
-          Dominio: Lenguajes | $C(x)$: compilado | $A(x)$: alto nivel | $c$: C++
+        <p style="font-size:0.88rem; color:#475569; margin-bottom:0.6rem;">
+          Dominio: Lenguajes | <em>C(x)</em>: compilado | <em>A(x)</em>: alto nivel | <em>c</em>: C++
         </p>
 
-        <div style="background:#fff; border:1px solid #cbd5e1; border-radius:6px; padding:0.75rem 1rem; font-family:'Fira Code', monospace; font-size:0.9rem;">
-          (1) &forall;x (C(x) &rarr; A(x)) &nbsp;&nbsp;&nbsp;&nbsp; [Premisa 1]<br>
+        <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:0.85rem 1.1rem; font-family:'Fira Code', monospace; font-size:0.92rem; line-height:1.75;">
+          (1) ∀x (C(x) → A(x)) &nbsp;&nbsp;&nbsp;&nbsp; [Premisa 1]<br>
           (2) C(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Premisa 2]<br>
-          (3) C(c) &rarr; A(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Instanciación Universal (IU) en 1 para x=c]<br>
+          (3) C(c) → A(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Instanciación Universal (IU) en 1 para x = c]<br>
           (4) A(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Modus Ponens (MP) en 3 y 2]
         </div>
-        <p style="margin-top:0.5rem; font-weight:700; color:var(--accent-green);">&there4; El argumento es VÁLIDO. &blacksquare;</p>
+        <p style="margin-top:0.6rem; font-weight:700; color:var(--accent-green);">∴ El argumento es formalmente VÁLIDO. ■</p>
       </div>
 
       <!-- 4.b -->
@@ -458,36 +465,37 @@
 
         <!-- Explicación tangible -->
         <div class="callout detective">
-          <strong>🕵️ La intuición tangible (Caso policial):</strong><br>
-          $p$: Entró por la puerta | $q$: Entró por la ventana | $r$: Sonó la alarma.<br>
-          • Sabemos que la alarma NO sonó ($\neg r = V \implies r = F$).<br>
-          • <strong>Asumimos la mentira:</strong> Suponemos que NO entró por la ventana ($q = F$).<br>
-          • Si la alarma no sonó, no pudo entrar por la puerta ($p \rightarrow r = V \implies p = F$).<br>
-          • Pero por algún lado entró: puerta o ventana ($p \lor q = V$). Con $p=F$ y $q=F$ da $F \lor F = \mathbf{F}$.<br>
-          • <strong>¡Contradicción!</strong> La mentira rompe la realidad. Por ende, <strong>SÍ entró por la ventana ($q = V$)</strong>.
+          <strong>🕵️ La intuición tangible (El detective del caso policial):</strong><br>
+          <em>p</em>: Entró por la puerta | <em>q</em>: Entró por la ventana | <em>r</em>: Sonó la alarma.<br>
+          • Sabemos con certeza que la alarma NO sonó (<em>v(¬r) = V ⇒ v(r) = F</em>).<br>
+          • <strong>Asumimos la mentira (Hipótesis del Absurdo):</strong> Suponemos que NO entró por la ventana (<em>v(q) = F</em>).<br>
+          • Si la alarma no sonó, tampoco pudo entrar por la puerta (<em>v(p → r) = V ⇒ v(p) = F</em>).<br>
+          • Pero por algún lado tuvo que haber entrado: por la puerta o por la ventana (<em>v(p ∨ q) = V</em>). Reemplazando con <em>v(p) = F</em> y <em>v(q) = F</em> nos da <em>F ∨ F = <strong>F</strong></em>.<br>
+          • <strong>¡Contradicción!</strong> La mentira rompe la realidad ($V \neq F$). Por lo tanto, <strong>forzosamente SÍ entró por la ventana (<em>v(q) = V</em>)</strong>.
         </div>
 
         <!-- Lo que se escribe en la hoja -->
-        <div style="background:#fff; border:1px solid #cbd5e1; border-radius:6px; padding:1rem; font-size:0.92rem; line-height:1.7;">
-          <strong>1. Hipótesis del Absurdo:</strong> Suponemos conclusión falsa y premisas verdaderas:<br>
-          &nbsp;&nbsp;&bull; Conclusión: <span class="formula">v(q) = F</span><br>
-          &nbsp;&nbsp;&bull; Premisas: <span class="formula">v(\neg r) = V</span> , <span class="formula">v(p \rightarrow r) = V</span> , <span class="formula">v(p \lor q) = V</span><br><br>
+        <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:1.1rem; font-size:0.92rem; line-height:1.75;">
+          <strong>1. Hipótesis del Absurdo:</strong> Suponemos que la conclusión es falsa y que todas las premisas son verdaderas:<br>
+          &nbsp;&nbsp;• Conclusión supuesta falsa: <span class="formula">v(q) = F</span><br>
+          &nbsp;&nbsp;• Premisas supuestas verdaderas: <span class="formula">v(¬r) = V</span> , <span class="formula">v(p → r) = V</span> , <span class="formula">v(p ∨ q) = V</span><br><br>
 
           <strong>2. Deducción de valores obligados:</strong><br>
-          &nbsp;&nbsp;&bull; De <span class="formula">v(\neg r) = V  \implies  \mathbf{v(r) = F}</span><br>
-          &nbsp;&nbsp;&bull; En <span class="formula">v(p \rightarrow r) = V</span>: como $r$ es $F$, el antecedente $p$ no puede ser $V$ ($V \rightarrow F = F$); por lo tanto forzosamente:<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;<span class="formula">\mathbf{v(p) = F}</span><br><br>
+          &nbsp;&nbsp;• De la premisa unitaria: <span class="formula">v(¬r) = V ⇒ v(r) = F</span><br>
+          &nbsp;&nbsp;• En la premisa condicional: <span class="formula">v(p → r) = V</span>.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Como <em>r</em> es <em>F</em>, para que el condicional sea verdadero el antecedente <em>p</em> no puede ser <em>V</em> (ya que <em>V → F = F</em>).<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Por lo tanto, forzosamente: <span class="formula">v(p) = F</span><br><br>
 
           <strong>3. Evaluación de la Premisa restante (p ∨ q):</strong><br>
-          &nbsp;&nbsp;Reemplazamos: <span class="formula">v(p \lor q) = F \lor F = \mathbf{F}</span><br>
+          &nbsp;&nbsp;Reemplazamos los valores obtenidos: <span class="formula">v(p ∨ q) = F ∨ F = F</span><br>
 
           <div class="callout contradiction">
-            💥 CONTRADICCIÓN: La premisa debía ser V, pero dio F ($V \neq F$).
+            💥 CONTRADICCIÓN: La premisa debía ser Verdadera (V), pero el cálculo de valores forzados dio Falso (F) [V ≠ F].
           </div>
 
           <strong>4. Conclusión formal:</strong><br>
-          Habiendo derivado una contradicción, la hipótesis del absurdo queda refutada.<br>
-          Por lo tanto, <strong>el argumento es formalmente VÁLIDO. &blacksquare;</strong>
+          Habiendo derivado una contradicción directa al asumir la conclusión falsa, la hipótesis queda refutada.<br>
+          Por lo tanto, <strong>el argumento es formalmente VÁLIDO. ■</strong>
         </div>
       </div>
     </section>

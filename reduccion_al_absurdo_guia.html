@@ -363,7 +363,7 @@
         Mira qué exacto coincide el caso policial con el ejercicio de tu parcial:
       </p>
       <div style="text-align: center; margin: 1.2rem 0;">
-        <span class="formula" style="font-size: 1.25rem; padding: 0.5rem 1.25rem;">\{ p \lor q , \; p \rightarrow r , \; \neg r \} \vdash q</span>
+        <span class="formula" style="font-size: 1.25rem; padding: 0.5rem 1.25rem;">{ p ∨ q , &nbsp; p → r , &nbsp; ¬r } ⊢ q</span>
       </div>
 
       <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
@@ -374,10 +374,10 @@
 
       <p>Leamos el examen con estas palabras:</p>
       <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
-        <li><strong>Premisa 1:</strong> <span class="formula">p \lor q</span> $\rightarrow$ <em>"Entró por la puerta o por la ventana"</em>.</li>
-        <li><strong>Premisa 2:</strong> <span class="formula">p \rightarrow r</span> $\rightarrow$ <em>"Si entró por la puerta, entonces sonó la alarma"</em>.</li>
-        <li><strong>Premisa 3:</strong> <span class="formula">\neg r</span> $\rightarrow$ <em>"La alarma NO sonó"</em>.</li>
-        <li><strong>Conclusión a validar:</strong> <span class="formula">q</span> $\rightarrow$ <em>"Entró por la ventana"</em>.</li>
+        <li><strong>Premisa 1:</strong> <span class="formula">p ∨ q</span> → <em>"Entró por la puerta o por la ventana"</em>.</li>
+        <li><strong>Premisa 2:</strong> <span class="formula">p → r</span> → <em>"Si entró por la puerta, entonces sonó la alarma"</em>.</li>
+        <li><strong>Premisa 3:</strong> <span class="formula">¬r</span> → <em>"La alarma NO sonó"</em>.</li>
+        <li><strong>Conclusión a validar:</strong> <span class="formula">q</span> → <em>"Entró por la ventana"</em>.</li>
       </ul>
     </section>
 
@@ -397,7 +397,7 @@
             ¿Cuándo falla un argumento? Cuando todas las premisas son verdaderas, pero la conclusión que te dan es mentira (falsa).<br>
             Por eso, clavamos la primera bandera: <span class="formula">v(q) = F</span> (asumimos que no entró por la ventana).<br>
             Y dejamos anotado que las tres premisas <strong>tienen la obligación de ser verdaderas</strong>:<br>
-            <span class="formula">v(\neg r) = V</span>, <span class="formula">v(p \rightarrow r) = V</span>, <span class="formula">v(p \lor q) = V</span>.
+            <span class="formula">v(¬r) = V</span>, <span class="formula">v(p → r) = V</span>, <span class="formula">v(p ∨ q) = V</span>.
           </div>
         </div>
 
@@ -405,8 +405,8 @@
           <div class="step-number">2</div>
           <div class="step-content">
             <strong>PASO 2: La primera ficha que cae (La premisa solitaria ¬r)</strong>
-            Buscamos la premisa más simple de todas: la Premisa 3 (<span class="formula">\neg r</span>).<br>
-            • La regla dice: <span class="formula">v(\neg r) = V</span>.<br>
+            Buscamos la premisa más simple de todas: la Premisa 3 (<span class="formula">¬r</span>).<br>
+            • La regla dice: <span class="formula">v(¬r) = V</span>.<br>
             • Si la negación de <span class="formula">r</span> es Verdadera, entonces <span class="formula">r</span> limpia y sin negar <strong>está obligada a ser Falsa</strong>:<br>
             <span class="formula">v(r) = F</span> <em>(Bandera 2: La alarma no sonó)</em>.
           </div>
@@ -416,13 +416,13 @@
           <div class="step-number">3</div>
           <div class="step-content">
             <strong>PASO 3: La segunda ficha que cae (El condicional p → r)</strong>
-            Ahora miramos la Premisa 2: <span class="formula">p \rightarrow r</span>.<br>
-            • Esta premisa tiene que ser Verdadera: <span class="formula">v(p \rightarrow r) = V</span>.<br>
+            Ahora miramos la Premisa 2: <span class="formula">p → r</span>.<br>
+            • Esta premisa tiene que ser Verdadera: <span class="formula">v(p → r) = V</span>.<br>
             • Pero del Paso 2 ya sabemos un secreto: <strong>la letra r vale Falsa (F)</strong>.<br>
-            • Pongamos esto sobre la mesa: <span class="formula">p \rightarrow F</span> tiene que dar <span class="formula">V</span>.<br>
+            • Pongamos esto sobre la mesa: <span class="formula">p → F</span> tiene que dar <span class="formula">V</span>.<br>
             • Preguntémonos: <em>¿Qué valor puede tener p?</em><br>
-            &nbsp;&nbsp;– Si <span class="formula">p = V</span>, nos quedaría <span class="formula">V \rightarrow F = F</span> (¡rompería la premisa!).<br>
-            &nbsp;&nbsp;– A <span class="formula">p</span> no le queda otra opción en la vida más que ser <strong>Falso (F)</strong>, porque <span class="formula">F \rightarrow F = V</span>.<br>
+            &nbsp;&nbsp;– Si <span class="formula">p = V</span>, nos quedaría <span class="formula">V → F = F</span> (¡rompería la premisa!).<br>
+            &nbsp;&nbsp;– A <span class="formula">p</span> no le queda otra opción en la vida más que ser <strong>Falso (F)</strong>, porque <span class="formula">F → F = V</span>.<br>
             Resultado inevitable: <span class="formula">v(p) = F</span> <em>(Bandera 3: Tampoco entró por la puerta)</em>.
           </div>
         </div>
@@ -436,7 +436,7 @@
             2. <span class="formula">v(r) = F</span> (del paso 2)<br>
             3. <span class="formula">v(p) = F</span> (del paso 3)<br><br>
             Ahora tomamos la <strong>Premisa 1 (p ∨ q)</strong>, que estaba esperando intacta. Exigía ser Verdadera (V):<br>
-            <span class="formula">v(p \lor q) = v(p) \lor v(q) = F \lor F = \mathbf{F}</span>.
+            <span class="formula">v(p ∨ q) = v(p) ∨ v(q) = F ∨ F = <strong>F</strong></span>.
           </div>
         </div>
 
@@ -447,7 +447,7 @@
             Mira lo que pasó:<br>
             • <strong>Por contrato inicial:</strong> La Premisa 1 debía ser <strong>V</strong>.<br>
             • <strong>Por las deducciones forzadas:</strong> La Premisa 1 dio <strong>F</strong>.<br>
-            Esto significa que la Premisa 1 tiene que ser V y F al mismo tiempo (<span class="formula">V \equiv F</span>). En la lógica humana y matemática, <strong>eso es un absurdo, una imposibilidad absoluta</strong>.<br><br>
+            Esto significa que la Premisa 1 tiene que ser V y F al mismo tiempo (<span class="formula">V ≡ F</span>). En la lógica humana y matemática, <strong>eso es un absurdo, una imposibilidad absoluta</strong>.<br><br>
             ¿Por qué se rompió todo? Porque en el <strong>Paso 1</strong> cometimos el pecado de asumir que <span class="formula">q</span> era Falsa.<br>
             Como asumir que <span class="formula">q</span> es falsa destruye las leyes de la lógica, <strong>es absolutamente imposible que q sea falsa</strong>.<br>
             <strong>Veredicto ineludible:</strong> <span class="formula">q</span> tiene que ser Verdadera (V). Por lo tanto, <strong>el razonamiento es VÁLIDO</strong>.
@@ -463,28 +463,28 @@
 
       <div class="exam-sheet">
         <h3>Solución Examen 4.b: Reducción al Absurdo</h3>
-        <p><strong>Razonamiento a validar:</strong> <span class="formula">\{ p \lor q , \; p \rightarrow r , \; \neg r \} \models q</span></p>
+        <p><strong>Razonamiento a validar:</strong> <span class="formula">{ p ∨ q , &nbsp; p → r , &nbsp; ¬r } ⊨ q</span></p>
 
         <ol>
           <li>
             <strong>Hipótesis del Absurdo:</strong><br>
             Suponemos que el razonamiento es <em>inválido</em>. Para ello, la conclusión debe ser Falsa y todas las premisas simultáneamente Verdaderas:
             <ul style="margin-left: 1.2rem; margin-top: 0.3rem;">
-              <li>Conclusión: <span class="formula">v(q) = F</span> $\quad \dots \text{(1)}$</li>
-              <li>Premisa 3: <span class="formula">v(\neg r) = V</span> $\quad \dots \text{(2)}$</li>
-              <li>Premisa 2: <span class="formula">v(p \rightarrow r) = V</span> $\quad \dots \text{(3)}$</li>
-              <li>Premisa 1: <span class="formula">v(p \lor q) = V</span> $\quad \dots \text{(4)}$</li>
+              <li>Conclusión: <span class="formula">v(q) = F</span> &nbsp;&nbsp; ... (1)</li>
+              <li>Premisa 3: <span class="formula">v(¬r) = V</span> &nbsp;&nbsp; ... (2)</li>
+              <li>Premisa 2: <span class="formula">v(p → r) = V</span> &nbsp;&nbsp; ... (3)</li>
+              <li>Premisa 1: <span class="formula">v(p ∨ q) = V</span> &nbsp;&nbsp; ... (4)</li>
             </ul>
           </li>
 
           <li>
             <strong>Deducción de valores de verdad forzados:</strong>
             <ul style="margin-left: 1.2rem; margin-top: 0.3rem;">
-              <li>De la ecuación (2): Como <span class="formula">v(\neg r) = V</span>, necesariamente:<br>
-                $$v(r) = F \quad \dots \text{(5)}$$
+              <li>De la ecuación (2): Como <span class="formula">v(¬r) = V</span>, necesariamente:<br>
+                <div style="text-align: center; margin: 0.4rem 0;"><span class="formula">v(r) = F</span> &nbsp;&nbsp; ... (5)</div>
               </li>
-              <li>De la ecuación (3): Tenemos que <span class="formula">v(p \rightarrow r) = V</span> y por (5) sabemos que <span class="formula">v(r) = F</span>. Para que un condicional con consecuente falso sea verdadero, su antecedente no puede ser verdadero ($V \rightarrow F = F$); por lo tanto, forzosamente:<br>
-                $$v(p) = F \quad \dots \text{(6)}$$
+              <li>De la ecuación (3): Tenemos que <span class="formula">v(p → r) = V</span> y por (5) sabemos que <span class="formula">v(r) = F</span>. Para que un condicional con consecuente falso sea verdadero, su antecedente no puede ser verdadero (<em>V → F = F</em>); por lo tanto, forzosamente:<br>
+                <div style="text-align: center; margin: 0.4rem 0;"><span class="formula">v(p) = F</span> &nbsp;&nbsp; ... (6)</div>
               </li>
             </ul>
           </li>
@@ -492,17 +492,17 @@
           <li>
             <strong>Evaluación de la Premisa 1 y hallazgo de la contradicción:</strong><br>
             Sustituimos en la ecuación (4) los valores obtenidos en (6) y (1):<br>
-            $$v(p \lor q) = v(p) \lor v(q) = F \lor F = \mathbf{F}$$
+            <div style="text-align: center; margin: 0.4rem 0;"><span class="formula">v(p ∨ q) = v(p) ∨ v(q) = F ∨ F = <strong>F</strong></span></div>
 
             <div class="contradiction-box">
               💥 CONTRADICCIÓN:<br>
-              Por la ecuación (4), la premisa debía ser V, pero obligatoriamente da F ($V \neq F$).
+              Por la ecuación (4), la premisa debía ser V, pero obligatoriamente da F (<em>V ≠ F</em>).
             </div>
           </li>
 
           <li>
             <strong>Conclusión formal:</strong><br>
-            Habiendo derivado una contradicción lógica, la hipótesis de que la conclusión sea falsa resulta insostenible. Por lo tanto, las premisas garantizan la conclusión y <strong>el argumento es formalmente VÁLIDO</strong>. $\blacksquare$
+            Habiendo derivado una contradicción lógica, la hipótesis de que la conclusión sea falsa resulta insostenible. Por lo tanto, las premisas garantizan la conclusión y <strong>el argumento es formalmente VÁLIDO</strong>. ■
           </li>
         </ol>
       </div>
