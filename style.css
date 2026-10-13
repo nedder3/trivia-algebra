@@ -336,6 +336,32 @@ h1 {
   fill: currentColor;
 }
 
+.guide-link-wrapper {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.guide-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-red);
+  border-radius: 6px;
+  background: rgba(255, 34, 34, 0.04);
+  transition: all 0.2s ease;
+}
+
+.guide-link:hover {
+  color: var(--accent-red);
+  border-color: var(--border-glow);
+  background: rgba(255, 34, 34, 0.1);
+  transform: translateY(-1px);
+}
+
 /* ==========================================
    PANTALLA 2: JUEGO (TRIVIA BOARD)
    ========================================== */
