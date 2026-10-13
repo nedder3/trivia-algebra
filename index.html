@@ -66,10 +66,10 @@
       </div>
       
       <h1>Psicokiller <span class="red-text">Lógica</span></h1>
-      <p class="subtitle">Álgebra y Lógica · Modo Sin Margen de Error</p>
+      <p class="subtitle">Álgebra y Lógica · Modo Práctico & Sin Margen de Error</p>
       
       <p class="welcome-desc">
-        En el mundo del rigor formal, el error no es una opción. Responde correctamente <strong>50 preguntas consecutivas</strong> de Álgebra y Lógica (Lógica Proposicional, Equivalencias, Consecuencia Lógica, Demostraciones y Lógica de Predicados). Si cometes una sola falacia o error, <strong>serás eliminado</strong> y deberás reiniciar desde la pregunta 1. Sin comodines, sin segundas oportunidades.
+        ¡Entrenamiento 100% práctico y aplicado! Resuelve cálculos de valores de verdad, tablas críticas, simbolizaciones de enunciados, simplificaciones con De Morgan, deducciones formales y reducción al absurdo. Responde correctamente <strong>50 ejercicios prácticos consecutivos</strong>. Un solo error o falacia te elimina al instante.
       </p>
 
       <div class="quote-box">
@@ -78,7 +78,7 @@
       </div>
 
       <button id="start-btn" class="btn" type="button">
-        Iniciar Desafío
+        Iniciar Desafío Práctico
         <svg viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
         </svg>
@@ -96,7 +96,7 @@
       <!-- HUD / Progress Bar -->
       <header class="hud-container">
         <div class="hud-data">
-          <div id="radar-indicator">Pregunta: <span class="accent-val" id="current-q-num">1</span>/50</div>
+          <div id="radar-indicator">Ejercicio: <span class="accent-val" id="current-q-num">1</span>/50</div>
           <div id="streak-indicator">Racha: <span class="accent-val" id="current-streak">0</span></div>
         </div>
         <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
@@ -128,8 +128,15 @@
         
         <h2 class="death-title">Eliminado por Falacia Lógica</h2>
         <div class="defeat-stats">
-          <p>Llegaste a la pregunta <span class="failed-q" id="failed-at">0</span> de 50.</p>
-          <p style="margin-top:0.5rem; font-size:0.95rem;">Te equivocaste en el concepto: <span class="failed-q" id="failed-concept">N/A</span></p>
+          <p>Llegaste al ejercicio <span class="failed-q" id="failed-at">0</span> de 50.</p>
+          <p style="margin-top:0.4rem; font-size:0.95rem;">Te equivocaste en el concepto: <span class="failed-q" id="failed-concept">N/A</span></p>
+        </div>
+
+        <div class="defeat-feedback" id="defeat-feedback-box" style="width: 100%; margin: 1.2rem 0; text-align: left; background: rgba(255, 34, 34, 0.05); border: 1px solid var(--border-red); border-radius: 8px; padding: 1rem 1.2rem;">
+          <p style="font-size: 0.88rem; color: #a1a1aa; margin-bottom: 0.35rem;"><strong>Ejercicio fallido:</strong></p>
+          <p id="failed-question-text" style="font-size: 0.95rem; color: #f5f5f7; margin-bottom: 0.75rem; line-height: 1.45;"></p>
+          <p style="font-size: 0.88rem; color: var(--correct-green); margin-bottom: 0.2rem;"><strong>Solución correcta:</strong></p>
+          <p id="failed-correct-answer" style="font-size: 0.95rem; color: #86efac; line-height: 1.45;"></p>
         </div>
 
         <div class="quote-box">

@@ -378,6 +378,11 @@ function handleOptionSelection(selectedIndex, clickedBtn) {
     failedAtVal.textContent = (currentIdx + 1).toString();
     failedConceptVal.textContent = currentQ.concept;
 
+    const failedQuestionText = document.getElementById('failed-question-text');
+    const failedCorrectAnswer = document.getElementById('failed-correct-answer');
+    if (failedQuestionText) failedQuestionText.textContent = currentQ.question;
+    if (failedCorrectAnswer) failedCorrectAnswer.textContent = currentQ.options[currentQ.answer];
+
     const randomQuote = defeatQuotes[Math.floor(Math.random() * defeatQuotes.length)];
     defeatQuoteText.textContent = `"${randomQuote.text}"`;
     defeatQuoteAuthor.textContent = randomQuote.author;
