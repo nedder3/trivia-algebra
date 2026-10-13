@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulacro de Examen Parcial Resuelto · Álgebra y Lógica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX para renderizado matemático de alta calidad -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    :root {
+      --primary: #0b57d0;
+      --primary-dark: #0842a0;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --bg-light: #f9fafb;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --accent-red: #dc2626;
+      --accent-green: #16a34a;
+      --accent-amber: #d97706;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .header-text h1 {
+      font-size: 1.85rem;
+      color: #111827;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .header-text .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .badge-header {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-print:hover {
+      background: var(--primary-dark);
+    }
+
+    .exercise-section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      page-break-inside: avoid;
+    }
+
+    .exercise-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 0.6rem;
+    }
+
+    .exercise-title {
+      font-size: 1.3rem;
+      color: #0f172a;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .points-badge {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .sub-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .sub-item-title {
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .meta-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 0.4rem;
+    }
+
+    .tag-prop { background: #e0f2fe; color: #0369a1; }
+    .tag-func { background: #fef3c7; color: #b45309; }
+    .tag-tauto { background: #dcfce7; color: #15803d; }
+    .tag-contin { background: #fef3c7; color: #b45309; }
+
+    .formula {
+      font-family: 'Fira Code', monospace;
+      background: #e2e8f0;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #0f172a;
+    }
+
+    /* Tablas */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 0.75rem 0 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 600;
+      padding: 0.6rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 0.55rem;
+      border-bottom: 1px solid var(--border);
+      color: #1e293b;
+    }
+
+    .val-v { font-weight: 700; color: var(--accent-green); }
+    .val-f { font-weight: 700; color: var(--accent-red); }
+
+    .col-result {
+      background: #f1f5f9;
+      font-weight: 700;
+      border-left: 2px solid #cbd5e1;
+      border-right: 2px solid #cbd5e1;
+    }
+
+    .callout {
+      background: #f8fafc;
+      border-left: 4px solid #64748b;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.93rem;
+    }
+
+    .callout.detective {
+      background: #fefce8;
+      border-left-color: #ca8a04;
+    }
+
+    .callout.contradiction {
+      background: #fef2f2;
+      border: 1px dashed var(--accent-red);
+      color: #991b1b;
+      font-weight: 600;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      margin: 0.85rem 0;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .container { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+      .btn-print { display: none !important; }
+      .exercise-section { page-break-inside: avoid; border: 1px solid #94a3b8; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-text">
+        <span class="badge-header">Álgebra y Lógica · Examen Parcial</span>
+        <h1>Simulacro de Examen Resuelto (Paso por Paso)</h1>
+        <p class="subtitle">Tecnicatura Superior en Desarrollo de Software · I.S.F.T. N.º 191</p>
+      </div>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Imprimir / Guardar PDF
+      </button>
+    </header>
+
+    <!-- ==========================================
+         EJERCICIO 1
+         ========================================== -->
+    <section class="exercise-section">
+      <div class="exercise-header-row">
+        <div class="exercise-title">Ejercicio 1: Proposición vs. Función Proposicional</div>
+        <span class="points-badge">2 puntos</span>
+      </div>
+      <p style="font-size:0.9rem; color:#64748b; margin-bottom:1rem;">
+        <strong>Criterio:</strong> Sujeto concreto ("Pedro", "El perro") $\implies$ Proposición (Constante). Incógnita abierta ("x", "Ellos") $\implies$ Función Proposicional (Variable).
+      </p>
+
+      <div class="sub-item">
+        <div class="sub-item-title">a) "Pedro usa bastón."</div>
+        <p><span class="meta-tag tag-prop">Proposición simple</span> Tiene sujeto concreto y valor de verdad determinado.</p>
+        <p><strong>Simbolización:</strong> <span class="formula">B(p)</span> — Predicado $B$: <em>"usa bastón"</em>, $p$: <strong>constante individual</strong> (Pedro).</p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">b) "x + 5 es un número impar."</div>
+        <p><span class="meta-tag tag-func">Función proposicional</span> Su valor de verdad depende del número que tome $x$.</p>
+        <p><strong>Simbolización:</strong> <span class="formula">I(x)</span> — Predicado $I$: <em>"es impar"</em>, $x$: <strong>variable individual</strong>.</p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">c) "El perro tiene frío."</div>
+        <p><span class="meta-tag tag-prop">Proposición simple</span> Oración declarativa sobre un sujeto determinado.</p>
+        <p><strong>Simbolización:</strong> <span class="formula">F(c)</span> — Predicado $F$: <em>"tiene frío"</em>, $c$: <strong>constante individual</strong> (el perro).</p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">d) "Si Juan y Laura van al circo, nos dejarán su auto."</div>
+        <p><span class="meta-tag tag-prop">Proposición compuesta</span> Unión de proposiciones simples con conectivas $\land$ y $\rightarrow$.</p>
+        <p><strong>Simbolización:</strong> <span class="formula">(j \land l) \rightarrow a</span> — $j$: Juan va, $l$: Laura va, $a$: dejan el auto.</p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">e) "Ellos son buenos amigos."</div>
+        <p><span class="meta-tag tag-func">Función proposicional</span> El pronombre "Ellos" opera como una variable libre sin referente concreto.</p>
+        <p><strong>Simbolización:</strong> <span class="formula">A(x)</span> — Predicado $A$: <em>"son buenos amigos"</em>, $x$: <strong>variable individual</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EJERCICIO 2
+         ========================================== -->
+    <section class="exercise-section">
+      <div class="exercise-header-row">
+        <div class="exercise-title">Ejercicio 2: Tablas de Verdad y Clasificación</div>
+        <span class="points-badge">2 puntos</span>
+      </div>
+
+      <!-- 2.a -->
+      <div class="sub-item">
+        <div class="sub-item-title">a) (p ∨ q) → (¬q → p) &nbsp;<span class="meta-tag tag-tauto">Tautología</span></div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p ∨ q</th>
+                <th>¬q</th>
+                <th>¬q → p</th>
+                <th class="col-result">(p ∨ q) → (¬q → p)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-f">F</td><td class="val-v">V</td><td class="col-result val-v">V</td></tr>
+              <tr><td class="val-v">V</td><td class="val-f">F</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="col-result val-v">V</td></tr>
+              <tr><td class="val-f">F</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-f">F</td><td class="val-v">V</td><td class="col-result val-v">V</td></tr>
+              <tr><td class="val-f">F</td><td class="val-f">F</td><td class="val-f">F</td><td class="val-v">V</td><td class="val-f">F</td><td class="col-result val-v">V</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.88rem;"><strong>Conclusión:</strong> Al tomar valor $V$ en todas sus filas ($F \rightarrow F = V$ en la fila 4), es una <strong>TAUTOLOGÍA</strong>.</p>
+      </div>
+
+      <!-- 2.b -->
+      <div class="sub-item">
+        <div class="sub-item-title">b) [(p → q) ∧ ¬p] → ¬q &nbsp;<span class="meta-tag tag-contin">Contingencia</span></div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p → q</th>
+                <th>¬p</th>
+                <th>(p → q) ∧ ¬p</th>
+                <th>¬q</th>
+                <th class="col-result">[(p → q) ∧ ¬p] → ¬q</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-f">F</td><td class="val-f">F</td><td class="val-f">F</td><td class="col-result val-v">V</td></tr>
+              <tr><td class="val-v">V</td><td class="val-f">F</td><td class="val-f">F</td><td class="val-f">F</td><td class="val-f">F</td><td class="val-v">V</td><td class="col-result val-v">V</td></tr>
+              <tr><td class="val-f">F</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-f">F</td><td class="col-result val-f" style="background:#fee2e2;">F (¡Fila de fallo!)</td></tr>
+              <tr><td class="val-f">F</td><td class="val-f">F</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="val-v">V</td><td class="col-result val-v">V</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.88rem;"><strong>Conclusión:</strong> Falla en la fila $p=F, q=V$ ($V \rightarrow F = F$). Al mezclar valores $V$ y $F$, es una <strong>CONTINGENCIA</strong> (Falacia de Negación del Antecedente).</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EJERCICIO 3
+         ========================================== -->
+    <section class="exercise-section">
+      <div class="exercise-header-row">
+        <div class="exercise-title">Ejercicio 3: Simbolización en Lógica de Predicados</div>
+        <span class="points-badge">3 puntos</span>
+      </div>
+      <p style="font-size:0.9rem; color:#64748b; margin-bottom:1rem;">
+        <strong>Regla de oro:</strong> $\forall$ va con condicional ($\rightarrow$) y $\exists$ va con conjunción ($\land$).
+      </p>
+
+      <div class="sub-item">
+        <div class="sub-item-title">i. "Todas las personas pueden hacer eso."</div>
+        <p>Dominio: Todas las entidades | $P(x)$: <em>"x es persona"</em> | $H(x)$: <em>"x puede hacer eso"</em></p>
+        <p>• <strong>Forma 1 (Universal):</strong> <span class="formula">\forall x \, (P(x) \rightarrow H(x))</span></p>
+        <p>• <strong>Forma 2 (Negación existencial):</strong> <span class="formula">\neg \exists x \, (P(x) \land \neg H(x))</span> <em>("No existe persona que no pueda hacerlo")</em></p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">ii. "No todos los perros ladran."</div>
+        <p>Dominio: Los animales | $P(x)$: <em>"x es perro"</em> | $L(x)$: <em>"x ladra"</em></p>
+        <p>• <strong>Forma 1 (Negación universal):</strong> <span class="formula">\neg \forall x \, (P(x) \rightarrow L(x))</span></p>
+        <p>• <strong>Forma 2 (Existencial equivalente):</strong> <span class="formula">\exists x \, (P(x) \land \neg L(x))</span> <em>("Existe al menos un perro que no ladra")</em></p>
+      </div>
+
+      <div class="sub-item">
+        <div class="sub-item-title">iii. "Hay servidores que no están conectados a Internet."</div>
+        <p>Dominio: Dispositivos informáticos | $S(x)$: <em>"x es servidor"</em> | $C(x)$: <em>"x está conectado"</em></p>
+        <p>• <strong>Forma 1 (Existencial directa):</strong> <span class="formula">\exists x \, (S(x) \land \neg C(x))</span></p>
+        <p>• <strong>Forma 2 (Negación de universal):</strong> <span class="formula">\neg \forall x \, (S(x) \rightarrow C(x))</span> <em>("No todos los servidores están conectados")</em></p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EJERCICIO 4
+         ========================================== -->
+    <section class="exercise-section">
+      <div class="exercise-header-row">
+        <div class="exercise-title">Ejercicio 4: Demostraciones Formales</div>
+        <span class="points-badge">3 puntos</span>
+      </div>
+
+      <!-- 4.a -->
+      <div class="sub-item">
+        <div class="sub-item-title">4.a) Deducción Natural con Predicados (C++)</div>
+        <p style="margin-bottom:0.5rem;"><em>"Todos los lenguajes compilados son de alto nivel. C++ es compilado. Por lo tanto, C++ es de alto nivel."</em></p>
+        <p style="font-size:0.88rem; color:#475569; margin-bottom:0.5rem;">
+          Dominio: Lenguajes | $C(x)$: compilado | $A(x)$: alto nivel | $c$: C++
+        </p>
+
+        <div style="background:#fff; border:1px solid #cbd5e1; border-radius:6px; padding:0.75rem 1rem; font-family:'Fira Code', monospace; font-size:0.9rem;">
+          (1) &forall;x (C(x) &rarr; A(x)) &nbsp;&nbsp;&nbsp;&nbsp; [Premisa 1]<br>
+          (2) C(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Premisa 2]<br>
+          (3) C(c) &rarr; A(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Instanciación Universal (IU) en 1 para x=c]<br>
+          (4) A(c) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Modus Ponens (MP) en 3 y 2]
+        </div>
+        <p style="margin-top:0.5rem; font-weight:700; color:var(--accent-green);">&there4; El argumento es VÁLIDO. &blacksquare;</p>
+      </div>
+
+      <!-- 4.b -->
+      <div class="sub-item">
+        <div class="sub-item-title">4.b) Reducción al Absurdo: {p ∨ q, p → r, ¬r} ⊢ q</div>
+
+        <!-- Explicación tangible -->
+        <div class="callout detective">
+          <strong>🕵️ La intuición tangible (Caso policial):</strong><br>
+          $p$: Entró por la puerta | $q$: Entró por la ventana | $r$: Sonó la alarma.<br>
+          • Sabemos que la alarma NO sonó ($\neg r = V \implies r = F$).<br>
+          • <strong>Asumimos la mentira:</strong> Suponemos que NO entró por la ventana ($q = F$).<br>
+          • Si la alarma no sonó, no pudo entrar por la puerta ($p \rightarrow r = V \implies p = F$).<br>
+          • Pero por algún lado entró: puerta o ventana ($p \lor q = V$). Con $p=F$ y $q=F$ da $F \lor F = \mathbf{F}$.<br>
+          • <strong>¡Contradicción!</strong> La mentira rompe la realidad. Por ende, <strong>SÍ entró por la ventana ($q = V$)</strong>.
+        </div>
+
+        <!-- Lo que se escribe en la hoja -->
+        <div style="background:#fff; border:1px solid #cbd5e1; border-radius:6px; padding:1rem; font-size:0.92rem; line-height:1.7;">
+          <strong>1. Hipótesis del Absurdo:</strong> Suponemos conclusión falsa y premisas verdaderas:<br>
+          &nbsp;&nbsp;&bull; Conclusión: <span class="formula">v(q) = F</span><br>
+          &nbsp;&nbsp;&bull; Premisas: <span class="formula">v(\neg r) = V</span> , <span class="formula">v(p \rightarrow r) = V</span> , <span class="formula">v(p \lor q) = V</span><br><br>
+
+          <strong>2. Deducción de valores obligados:</strong><br>
+          &nbsp;&nbsp;&bull; De <span class="formula">v(\neg r) = V  \implies  \mathbf{v(r) = F}</span><br>
+          &nbsp;&nbsp;&bull; En <span class="formula">v(p \rightarrow r) = V</span>: como $r$ es $F$, el antecedente $p$ no puede ser $V$ ($V \rightarrow F = F$); por lo tanto forzosamente:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="formula">\mathbf{v(p) = F}</span><br><br>
+
+          <strong>3. Evaluación de la Premisa restante (p ∨ q):</strong><br>
+          &nbsp;&nbsp;Reemplazamos: <span class="formula">v(p \lor q) = F \lor F = \mathbf{F}</span><br>
+
+          <div class="callout contradiction">
+            💥 CONTRADICCIÓN: La premisa debía ser V, pero dio F ($V \neq F$).
+          </div>
+
+          <strong>4. Conclusión formal:</strong><br>
+          Habiendo derivado una contradicción, la hipótesis del absurdo queda refutada.<br>
+          Por lo tanto, <strong>el argumento es formalmente VÁLIDO. &blacksquare;</strong>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Álgebra y Lógica · Tecnicatura Superior en Desarrollo de Software · I.S.F.T. N.º 191
+    </footer>
+  </div>
+
+</body>
+</html>
