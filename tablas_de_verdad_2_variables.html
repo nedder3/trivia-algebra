@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Tablas de Verdad (2 Variables) - Álgebra y Lógica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0b57d0;
+      --primary-dark: #0842a0;
+      --text-main: #1f2937;
+      --text-muted: #4b5563;
+      --bg-light: #f9fafb;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --tauto-bg: #dcfce7;
+      --tauto-text: #166534;
+      --contra-bg: #fee2e2;
+      --contra-text: #991b1b;
+      --contin-bg: #fef3c7;
+      --contin-text: #92400e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .header-text h1 {
+      font-size: 1.85rem;
+      color: #111827;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+
+    .header-text .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .badge-header {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-print:hover {
+      background: var(--primary-dark);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      color: #111827;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #1f2937;
+      margin-top: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .callout {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.2rem 0;
+      font-size: 0.92rem;
+    }
+
+    .callout.warning {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #111827;
+    }
+
+    /* Tablas */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1.2rem 0 1.6rem 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 600;
+      padding: 0.75rem 0.6rem;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.65rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      color: #1e293b;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) td {
+      background: #fdfdfd;
+    }
+
+    .val-v {
+      font-weight: 700;
+      color: #15803d;
+    }
+
+    .val-f {
+      font-weight: 700;
+      color: #b91c1c;
+    }
+
+    .col-result {
+      background-color: #f1f5f9 !important;
+      font-weight: 700;
+      border-left: 2px solid #cbd5e1;
+      border-right: 2px solid #cbd5e1;
+    }
+
+    th.col-result {
+      background-color: #e2e8f0 !important;
+      color: #0f172a;
+    }
+
+    /* Tarjetas de Ejercicios */
+    .exercise-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      page-break-inside: avoid;
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .exercise-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #0f172a;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .tag-classification {
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag-tautologia {
+      background: var(--tauto-bg);
+      color: var(--tauto-text);
+      border: 1px solid #bbf7d0;
+    }
+
+    .tag-contradiccion {
+      background: var(--contra-bg);
+      color: var(--contra-text);
+      border: 1px solid #fecaca;
+    }
+
+    .tag-contingencia {
+      background: var(--contin-bg);
+      color: var(--contin-text);
+      border: 1px solid #fde68a;
+    }
+
+    .explanation-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      color: #475569;
+      margin-top: 0.75rem;
+    }
+
+    .explanation-box strong {
+      color: #1e293b;
+    }
+
+    .formula {
+      font-family: 'Fira Code', monospace;
+      background: #f1f5f9;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .btn-print {
+        display: none !important;
+      }
+
+      .exercise-card {
+        page-break-inside: avoid;
+        border: 1px solid #94a3b8;
+        margin-bottom: 1.5rem;
+      }
+
+      table, th, td {
+        border-color: #94a3b8;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-text">
+        <span class="badge-header">Álgebra y Lógica · ISFT N.º 191</span>
+        <h1>Guía de Tablas de Verdad (2 Variables)</h1>
+        <p class="subtitle">Estructuras canónicas, resoluciones paso a paso y método de Reducción al Absurdo.</p>
+      </div>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Imprimir / Guardar PDF
+      </button>
+    </header>
+
+    <!-- SECCIÓN 1: ESTRATEGIA -->
+    <section>
+      <h2>1. La Estrategia de Examen: ¿Por qué 2 Variables?</h2>
+      <p>
+        Para 2 variables proposicionales (<span class="formula">p, q</span>), la tabla tiene exactamente <strong>4 filas</strong> (<span class="formula">2² = 4</span>). Es rápida de trazar y casi inmune a errores de conteo.
+      </p>
+
+      <div class="callout">
+        <div class="callout-title">💡 La Regla Mnemotécnica del Orden Base</div>
+        Al escribir en la hoja, las dos primeras columnas se llenan siempre en este orden inmutable:
+        <ul style="margin-left: 1.4rem; margin-top: 0.35rem;">
+          <li>Columna <strong>p</strong>: <strong>V, V, F, F</strong> (dos y dos).</li>
+          <li>Columna <strong>q</strong>: <strong>V, F, V, F</strong> (uno y uno).</li>
+        </ul>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-title">⚠️ Regla de Oro para 3 Variables (p, q, r)</div>
+        <strong>No hagas tablas de 8 filas para argumentos:</strong> Si el ejercicio pide validar un razonamiento como <span class="formula">{p ∨ q, p → r, ¬r} ⊨ q</span>, <strong>utiliza siempre Reducción al Absurdo</strong>. Te ahorra 8 filas de cálculos propensos a errores de signo. Las tablas de verdad resérvalas para cuando el enunciado exija explícitamente: <em>"Mediante tabla de verdad, clasificar en..."</em>.
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CHULETA DE CONECTIVAS -->
+    <section>
+      <h2>2. Tabla Maestra de las 5 Conectivas</h2>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>p</th>
+              <th>q</th>
+              <th>¬p (Negación)</th>
+              <th>p ∧ q (Conjunción)</th>
+              <th>p ∨ q (Disyunción)</th>
+              <th>p → q (Condicional)</th>
+              <th>p ↔ q (Bicondicional)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+              <td class="val-f">F</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+            </tr>
+            <tr>
+              <td class="val-v">V</td>
+              <td class="val-f">F</td>
+              <td class="val-f">F</td>
+              <td class="val-f">F</td>
+              <td class="val-v">V</td>
+              <td class="val-f" style="background:#fee2e2;">F (¡Único caso!)</td>
+              <td class="val-f">F</td>
+            </tr>
+            <tr>
+              <td class="val-f">F</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+              <td class="val-f">F</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+              <td class="val-f">F</td>
+            </tr>
+            <tr>
+              <td class="val-f">F</td>
+              <td class="val-f">F</td>
+              <td class="val-v">V</td>
+              <td class="val-f">F</td>
+              <td class="val-f" style="background:#fee2e2;">F (¡Único caso!)</td>
+              <td class="val-v">V</td>
+              <td class="val-v">V</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.88rem; color:#6b7280;">
+        <strong>Punto crítico del condicional:</strong> <span class="formula">p → q</span> solo es <strong>Falso</strong> cuando el antecedente es Verdadero y el consecuente es Falso (<span class="formula">V → F = F</span>). Si el antecedente es Falso, el condicional es <strong>automáticamente Verdadero</strong>.
+      </p>
+    </section>
+
+    <!-- SECCIÓN 3: EJERCICIOS RESUELTOS -->
+    <section>
+      <h2>3. Resoluciones Completas de Examen y TP</h2>
+
+      <!-- EJERCICIO 1 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">1. (p → q) ∧ (p ∧ ¬q)</span>
+          <span class="tag-classification tag-contradiccion">Contradicción</span>
+        </div>
+        <p>Trabajo Práctico 1 (Parte 2), Ejercicio 1.1.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p → q</th>
+                <th>¬q</th>
+                <th>p ∧ ¬q</th>
+                <th class="col-result">(p → q) ∧ (p ∧ ¬q)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-f">F</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-f">F</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-f">F</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-f">F</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Justificación para el examen:</strong> En todas las asignaciones posibles la conjunción final resulta Falsa (<span class="formula">F</span>). Esto ocurre porque <span class="formula">p ∧ ¬q</span> es exactamente la negación de <span class="formula">p → q</span>, formando la estructura contradictoria <span class="formula">A ∧ ¬A ≡ F</span>.
+        </div>
+      </article>
+
+      <!-- EJERCICIO 2 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">2. ¬(p → q) ↔ (p ∧ ¬q)</span>
+          <span class="tag-classification tag-tautologia">Tautología</span>
+        </div>
+        <p>Trabajo Práctico 1 (Parte 2), Ejercicio 1.3 (Demostración de la negación del condicional).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p → q</th>
+                <th>¬(p → q)</th>
+                <th>¬q</th>
+                <th>p ∧ ¬q</th>
+                <th class="col-result">¬(p → q) ↔ (p ∧ ¬q)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Justificación para el examen:</strong> Ambas subexpresiones <span class="formula">¬(p → q)</span> y <span class="formula">p ∧ ¬q</span> coinciden exactamente fila por fila (<span class="formula">F, V, F, F</span>). El bicondicional devuelve <span class="formula">V</span> en el 100% de las filas, demostrando que son <strong>lógicamente equivalentes</strong>.
+        </div>
+      </article>
+
+      <!-- EJERCICIO 3 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">3. (p ∨ q) → (¬q → p)</span>
+          <span class="tag-classification tag-tautologia">Tautología</span>
+        </div>
+        <p>Examen Parcial (Simulacro), Ejercicio 2a.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p ∨ q</th>
+                <th>¬q</th>
+                <th>¬q → p</th>
+                <th class="col-result">(p ∨ q) → (¬q → p)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Punto clave en la fila 4:</strong> Antecedente <span class="formula">F</span>, consecuente <span class="formula">F</span>. Como <span class="formula">F → F = V</span>, la columna final resulta <span class="formula">V</span> en todas sus filas. Clasificación: <strong>Tautología</strong>.
+        </div>
+      </article>
+
+      <!-- EJERCICIO 4 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">4. [(p → q) ∧ ¬p] → ¬q</span>
+          <span class="tag-classification tag-contingencia">Contingencia</span>
+        </div>
+        <p>Examen Parcial (Simulacro), Ejercicio 2b (Falacia de Negación del Antecedente).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p → q</th>
+                <th>¬p</th>
+                <th>(p → q) ∧ ¬p</th>
+                <th>¬q</th>
+                <th class="col-result">[(p → q) ∧ ¬p] → ¬q</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-f" style="background:#fee2e2 !important;">F (¡Fila de fallo!)</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Atención a la fila 3 (p=F, q=V):</strong> El antecedente da <span class="formula">V ∧ V = V</span> pero el consecuente <span class="formula">¬q</span> es <span class="formula">F</span>. Por lo tanto, <span class="formula">V → F = F</span>. Al contener valores Verdaderos y Falsos, es una <strong>Contingencia</strong> y confirma que negar el antecedente no permite deducir la negación del consecuente.
+        </div>
+      </article>
+
+      <!-- EJERCICIO 5 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">5. [(p → q) ∧ q] → p</span>
+          <span class="tag-classification tag-contingencia">Contingencia</span>
+        </div>
+        <p>Falacia formal de Afirmación del Consecuente.</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p → q</th>
+                <th>(p → q) ∧ q</th>
+                <th class="col-result">[(p → q) ∧ q] → p</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-f" style="background:#fee2e2 !important;">F</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Falla en la fila 3:</strong> Cuando <span class="formula">p = F</span> y <span class="formula">q = V</span>, el antecedente se cumple (<span class="formula">V</span>) pero la conclusión <span class="formula">p</span> es falsa. Falla el razonamiento: es una <strong>Contingencia</strong>.
+        </div>
+      </article>
+
+      <!-- EJERCICIO 6 -->
+      <article class="exercise-card">
+        <div class="exercise-header">
+          <span class="exercise-title">6. [(p ∨ q) ∧ ¬p] → q</span>
+          <span class="tag-classification tag-tautologia">Tautología</span>
+        </div>
+        <p>Silogismo Disyuntivo (Regla de inferencia válida).</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th>p ∨ q</th>
+                <th>¬p</th>
+                <th>(p ∨ q) ∧ ¬p</th>
+                <th class="col-result">[(p ∨ q) ∧ ¬p] → q</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="val-v">V</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+              <tr>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-f">F</td>
+                <td class="val-v">V</td>
+                <td class="val-f">F</td>
+                <td class="col-result val-v">V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="explanation-box">
+          <strong>Resultado:</strong> Da <span class="formula">V</span> en todas las filas. Todo argumento válido transformado a su condicional asociado es una <strong>Tautología</strong>.
+        </div>
+      </article>
+    </section>
+
+    <!-- SECCIÓN 4: BONUS REDUCCIÓN AL ABSURDO -->
+    <section>
+      <h2>4. Plantilla de Reducción al Absurdo (Para Evitar Tablas de 3 Variables)</h2>
+      <p>
+        Cuando tengas un argumento con 3 variables proposicionales (<span class="formula">p, q, r</span>) como el del parcial:
+      </p>
+      <div style="text-align:center; margin: 1rem 0;">
+        <span class="formula" style="font-size: 1.15rem; padding: 0.4rem 1rem;">{ p ∨ q , \; p → r , \; ¬r } ⊨ q</span>
+      </div>
+
+      <div class="explanation-box" style="line-height: 1.8;">
+        <strong>Paso 1 (Hipótesis del Absurdo):</strong> Suponemos que el argumento es <em>inválido</em>. Esto obliga a que la conclusión sea FALSA y todas las premisas sean VERDADERAS:<br>
+        • Conclusión falsa: <span class="formula">v(q) = F</span><br>
+        • Premisa 3 verdadera: <span class="formula">v(¬r) = V  ⟹  v(r) = F</span><br>
+        • Premisa 2 verdadera: <span class="formula">v(p → r) = V</span>. Como ya sabemos que <span class="formula">v(r) = F</span>, para que el condicional no sea falso obliga a que <span class="formula">v(p) = F</span>.<br><br>
+
+        <strong>Paso 2 (Evaluación de la Premisa restante):</strong><br>
+        Sustituimos en la Premisa 1 (<span class="formula">p ∨ q</span>):<br>
+        <span class="formula">v(p ∨ q) = v(p) ∨ v(q) = F ∨ F = F</span>.<br><br>
+
+        <strong>Paso 3 (Contradicción y Conclusión):</strong><br>
+        ¡Contradicción! La Premisa 1 debía ser obligatoriamente <span class="formula">V</span>, pero la hipótesis del absurdo la forzó a <span class="formula">F</span>. Es imposible hacer premisas verdaderas con conclusión falsa simultáneamente. Por ende, <strong>el argumento es VÁLIDO</strong>.
+      </div>
+    </section>
+
+    <footer>
+      Álgebra y Lógica · Tecnicatura Superior en Desarrollo de Software · I.S.F.T. N.º 191
+    </footer>
+  </div>
+
+</body>
+</html>
