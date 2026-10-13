@@ -39,6 +39,8 @@ jobs:
           cp questions.js _site/
           cp tablas_de_verdad_2_variables.html _site/
           cp tablas_de_verdad_2_variables.pdf _site/
+          cp reduccion_al_absurdo_guia.html _site/
+          cp reduccion_al_absurdo_guia.pdf _site/
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
